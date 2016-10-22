@@ -43,13 +43,13 @@ bot.dialog('/firstRun', [
         // We'll save the users name and send them an initial greeting. All 
         // future messages from the user will be routed to the root dialog.
         session.userData.name = results.response;
-      users.update({ hash: 1111, range: "devil" }, {    shirts: 0  });
         builder.Prompts.text(session, "What paypal account shall I pay when your shirt sells? (Give me the email address)");
     },
     function (session, results) {
         // We'll save the users name and send them an initial greeting. All 
         // future messages from the user will be routed to the root dialog.
         session.userData.paypal = results.response;
+       users.update({ hash: session.userData.paypal, range: session.userData.name }, {    optindate: new Date(), shirts: 0  });
       session.send("Very good! Let's make your first shirt");
         session.beginDialog('/');
     }
