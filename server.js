@@ -50,9 +50,10 @@ bot.dialog('/firstRun', [
         // We'll save the users name and send them an initial greeting. All 
         // future messages from the user will be routed to the root dialog.
         session.userData.paypal = results.response;
-      users.update({ hash: 10, range: "Mikeybot" }, {       shirts: 0  })
-    .then(function(resp) {
-        console.log("Done logging user to DB");
+      users
+    .find({ hash: '125', range: 'John Doe' })
+    .then(function(land) {
+        session.send(land);
     });
       session.send("Very good! Let's make your first shirt");
         session.beginDialog('/');
