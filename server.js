@@ -127,6 +127,8 @@ bot.dialog('/details', [
    // Make shopify API call with details of shirt.
    // Make shopify API call to fetch link to shirt.
    // Send message with "Congratulations! Your shirt is on sale at LINK"
+      //return to home base
+      session.beginDialog('/');
     }
 ]);
 
