@@ -44,7 +44,20 @@ bot.dialog('/firstRun', [
         // We'll save the users name and send them an initial greeting. All 
         // future messages from the user will be routed to the root dialog.
         session.userData.name = results.response;
-        session.endDialog("Hi %s, say something to me and I'll echo it back.", session.userData.name); 
+        builder.Prompts.text(session, "What paypal account shall I pay when your shirt sells? (Give me the email address)");
+    },
+    function (session, results) {
+        // We'll save the users name and send them an initial greeting. All 
+        // future messages from the user will be routed to the root dialog.
+        session.userData.paypal = results.response;
+      users
+    .update({ hash: session.userData.paypal, range: session.userData.name }, {
+             shirts: 0
+    })
+    .then(function(resp) {
+        session.send("Very good! Let's make your first shirt");
+        session.beginDialog('/');
+    });
     }
 ]);
 
