@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fuselabs/echobot.git"
+    "url": "git+https://github.com/sitver/echobot.git"
   },
   "keywords": [
     "botframework"
@@ -16,11 +16,11 @@
   "author": "Fuse Labs",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fuselabs/echobot/issues"
+    "url": "https://github.com/sitver/echobot/issues"
   },
   "homepage": "https://github.com/fuselabs/echobot#readme",
   "dependencies": {
-    "botbuilder": "https://aka.ms/hackathon-builder-npm",
+    "botbuilder": "^3.3.3",
     "restify": "^4.0.4"
   }
 }
