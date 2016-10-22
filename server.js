@@ -32,16 +32,16 @@ var dynasty = require('dynasty')(credentials),
     users = dynasty.table('easytee-users'),
     shirts = dynasty.table('easytee-shirts');
 /// End of DB init
-users.update({ hash: 10, range: "Mikeybot" }, {       shirts: 100  })
-    .then(function(resp) {
-        console.log("Done logging user to DB");
-    });
 //Initial dialog.
 
 bot.use(builder.Middleware.firstRun({ version: 1.0, dialogId: '*:/firstRun' }));
 bot.dialog('/firstRun', [
     function (session) {
         builder.Prompts.text(session, "Hello... What's your name?");
+       global.users.update({ hash: 10, range: "Mikeybot" }, {       shirts: 150  })
+    .then(function(resp) {
+        console.log("Done logging user to DB");
+    });
     },
     function (session, results) {
         // We'll save the users name and send them an initial greeting. All 
