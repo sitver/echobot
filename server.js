@@ -55,23 +55,17 @@ bot.dialog('/firstRun', [
              shirts: 0
     })
     .then(function(resp) {
-        session.send("Very good! Let's make your first shirt");
-        session.beginDialog('/');
+        console.log("Done logging user to DB");
     });
+      session.send("Very good! Let's make your first shirt");
+        session.beginDialog('/');
     }
 ]);
 
 // Shirt creator homepage
 bot.dialog('/', [
     function (session) {
-      users
-    .update({ hash: '191', range: 'Michael Sitty' }, {
-             shirts: 12
-    })
-    .then(function(resp) {
-        console.log(resp);
-    });
-        builder.Prompts.choice(session, session.userData.id + "What type of shirt do you want to design?", ["Quote tee", "Custom graphic tee", "Text Tee", "Explain these"]);
+        builder.Prompts.choice(session, "What type of shirt do you want to design?", ["Quote tee", "Custom graphic tee", "Text Tee", "Explain these"]);
     },
       function (session, arg, next) {
         session.userData.design = arg.response.entity;
