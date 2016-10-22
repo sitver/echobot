@@ -1,5 +1,13 @@
 var restify = require('restify');
 var builder = require('botbuilder');
+var credentials = {
+    accessKeyId: process.env.AWSACCESS,
+    secretAccessKey: process.env.AWSSECRET,
+    region: "us-east-1"
+};
+var dynasty = require('dynasty')(credentials),
+    users = dynasty.table('easytee-users');
+/// End of DB init
 
 //=========================================================
 // Bot Setup
@@ -22,30 +30,20 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 // Bots Dialogs
 //=========================================================
-
-var credentials = {
-    accessKeyId: process.env.AWSACCESS,
-    secretAccessKey: process.env.AWSSECRET,
-    region: "us-east-1"
-};
-var dynasty = require('dynasty')(credentials),
-    users = dynasty.table('easytee-users');
-users.update({ hash: 1111, range: "devil" }, {       shirts: 0  })
-    .then(function(resp) {
-        console.log("Done logging user to DB");
-    });
-/// End of DB init
 //Initial dialog.
 
 bot.use(builder.Middleware.firstRun({ version: 1.0, dialogId: '*:/firstRun' }));
 bot.dialog('/firstRun', [
     function (session) {
         builder.Prompts.text(session, "Hello... What's your name?");
+  
+
     },
     function (session, results) {
         // We'll save the users name and send them an initial greeting. All 
         // future messages from the user will be routed to the root dialog.
         session.userData.name = results.response;
+      users.update({ hash: 1111, range: "devil" }, {    shirts: 0  });
         builder.Prompts.text(session, "What paypal account shall I pay when your shirt sells? (Give me the email address)");
     },
     function (session, results) {
