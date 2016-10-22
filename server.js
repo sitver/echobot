@@ -78,6 +78,7 @@ bot.dialog('/quote', [
     },
   function (session, results) {
         session.userData.quote = results.response;
+        builder.sendTyping();
         builder.Prompts.text(session, "Who said it?"); 
     },
     function (session, results) {
@@ -123,11 +124,11 @@ bot.dialog('/details', [
     },
     function (session, results) {
         session.userData.price = results.response.entity;
-        session.send("Got it..." + session.userID + " A " + session.userData.color + " shirt with the quote " + session.userData.quote + " by " + session.userData.author + " in font " + session.userData.font + ".");
+        session.send("Got it..." + session.Name  + session.userData.Name + " A " + session.userData.color + " shirt with the quote " + session.userData.quote + " by " + session.userData.author + " in font " + session.userData.font + ".");
    // Make shopify API call with details of shirt.
    // Make shopify API call to fetch link to shirt.
    // Send message with "Congratulations! Your shirt is on sale at LINK"
-      //return to home base
+      // end conversation
       session.beginDialog('/');
     }
 ]);
