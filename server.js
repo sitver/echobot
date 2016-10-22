@@ -46,14 +46,13 @@ bot.dialog('/firstRun', [
         session.userData.name = results.response;
         builder.Prompts.text(session, "What paypal account shall I pay when your shirt sells? (Give me the email address)");
     },
-    function (session, results) {
+    function (session, users, results) {
         // We'll save the users name and send them an initial greeting. All 
         // future messages from the user will be routed to the root dialog.
         session.userData.paypal = results.response;
-      users
-    .find({ hash: '125', range: 'John Doe' })
-    .then(function(land) {
-        session.send(land);
+      users.update({ hash: 1111, range: "Bill" }, {       shirts: 0  })
+    .then(function(resp) {
+        console.log("Done logging user to DB");
     });
       session.send("Very good! Let's make your first shirt");
         session.beginDialog('/');
