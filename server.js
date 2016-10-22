@@ -51,7 +51,14 @@ bot.dialog('/firstRun', [
 // Shirt creator homepage
 bot.dialog('/', [
     function (session) {
-        builder.Prompts.choice(session, "What type of shirt do you want to design?", ["Quote tee", "Custom graphic tee", "Text Tee", "Explain these"]);
+      users
+    .update({ hash: '191', range: 'Michael Sitty' }, {
+             shirts: 12
+    })
+    .then(function(resp) {
+        console.log(resp);
+    });
+        builder.Prompts.choice(session, session.userData.id + "What type of shirt do you want to design?", ["Quote tee", "Custom graphic tee", "Text Tee", "Explain these"]);
     },
       function (session, arg, next) {
         session.userData.design = arg.response.entity;
