@@ -24,8 +24,8 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 
 var credentials = {
-    accessKeyId: 'AKIAJFNRZIAYXBCSYPGA',
-    secretAccessKey: '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',
+    accessKeyId: process.env.AWSACCESS,
+    secretAccessKey: process.env.AWSSECRET,
     region: "us-east-1"
 };
 var dynasty = require('dynasty')(credentials),
