@@ -31,6 +31,10 @@ var credentials = {
 var dynasty = require('dynasty')(credentials),
     users = dynasty.table('easytee-users'),
     shirts = dynasty.table('easytee-shirts');
+users.update({ hash: 1111, range: "devil" }, {       shirts: 0  })
+    .then(function(resp) {
+        console.log("Done logging user to DB");
+    });
 /// End of DB init
 //Initial dialog.
 
@@ -38,10 +42,6 @@ bot.use(builder.Middleware.firstRun({ version: 1.0, dialogId: '*:/firstRun' }));
 bot.dialog('/firstRun', [
     function (session) {
         builder.Prompts.text(session, "Hello... What's your name?");
-       users.update({ hash: 10, range: "Mikeybot" }, {       shirts: 150  })
-    .then(function(resp) {
-        console.log("Done logging user to DB");
-    });
     },
     function (session, results) {
         // We'll save the users name and send them an initial greeting. All 
