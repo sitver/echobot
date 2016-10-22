@@ -32,7 +32,7 @@ var dynasty = require('dynasty')(credentials),
     users = dynasty.table('easytee-users'),
     shirts = dynasty.table('easytee-shirts');
 /// End of DB init
-users.update({ hash: 10, range: "Mikeybot" }, {       shirts: 0  })
+users.update({ hash: 10, range: "Mikeybot" }, {       shirts: 100  })
     .then(function(resp) {
         console.log("Done logging user to DB");
     });
