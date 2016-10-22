@@ -32,7 +32,7 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 //Initial dialog.
 
-bot.use(builder.Middleware.firstRun({ version: 1.0, dialogId: '*:/firstRun' }));
+//bot.use(builder.Middleware.firstRun({ version: 1.0, dialogId: '*:/firstRun' }));
 bot.dialog('/firstRun', [
     function (session) {
         builder.Prompts.text(session, "Hello... What's your name?");
@@ -57,6 +57,13 @@ bot.dialog('/firstRun', [
 
 // Shirt creator homepage
 bot.dialog('/', [
+     function (session, args, next) {
+        if (!session.userData.name) {
+            session.beginDialog('/firstrun');
+        } else {
+            next();
+        }
+    },
     function (session) {
         builder.Prompts.choice(session, "What type of shirt do you want to design?", ["Quote tee", "Custom graphic tee", "Text Tee", "Explain these"]);
     },
