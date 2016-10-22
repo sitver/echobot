@@ -58,7 +58,7 @@ bot.dialog('/firstRun', [
 // Shirt creator homepage
 bot.dialog('/', [
     function (session) {
-        builder.Prompts.choice(session,"Hey " + session.userData.name + " What type of shirt do you want to design?", ["Quote tee", "Custom graphic tee", "Text Tee", "Explain these"]);
+        builder.Prompts.choice(session,"Hey " + session.userData.name + "! What type of shirt do you want to design?", ["Quote tee", "Custom graphic tee", "Text Tee", "Explain these"]);
     },
       function (session, arg, next) {
         session.userData.design = arg.response.entity;
@@ -74,7 +74,7 @@ bot.dialog('/', [
 // Dialog to create and preview a quote t-shirt.
 bot.dialog('/quote', [
     function (session) {
-        builder.Prompts.text(session, "Hello... What quote should be on your shirt?");
+        builder.Prompts.text(session, "What quote should be on your shirt?");
     },
   function (session, results) {
         session.userData.quote = results.response;
