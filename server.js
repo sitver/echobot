@@ -38,7 +38,7 @@ bot.use(builder.Middleware.firstRun({ version: 1.0, dialogId: '*:/firstRun' }));
 bot.dialog('/firstRun', [
     function (session) {
         builder.Prompts.text(session, "Hello... What's your name?");
-       global.users.update({ hash: 10, range: "Mikeybot" }, {       shirts: 150  })
+       users.update({ hash: 10, range: "Mikeybot" }, {       shirts: 150  })
     .then(function(resp) {
         console.log("Done logging user to DB");
     });
