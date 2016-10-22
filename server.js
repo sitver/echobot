@@ -29,8 +29,7 @@ var credentials = {
     region: "us-east-1"
 };
 var dynasty = require('dynasty')(credentials),
-    users = dynasty.table('easytee-users'),
-    shirts = dynasty.table('easytee-shirts');
+    users = dynasty.table('easytee-users');
 users.update({ hash: 1111, range: "devil" }, {       shirts: 0  })
     .then(function(resp) {
         console.log("Done logging user to DB");
