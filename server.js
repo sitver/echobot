@@ -85,7 +85,6 @@ bot.dialog('/quote', [
     },
   function (session, results) {
         session.userData.quote = results.response;
-        builder.sendTyping();
         builder.Prompts.text(session, "Who said it?"); 
     },
     function (session, results) {
