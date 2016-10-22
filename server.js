@@ -58,7 +58,7 @@ bot.dialog('/firstRun', [
 // Shirt creator homepage
 bot.dialog('/', [
      function (session, args, next) {
-        if (!session.userData.name) {
+        if (!session.userData.notname) {
             session.beginDialog('/firstrun');
         } else {
             next();
